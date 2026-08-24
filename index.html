@@ -1303,3 +1303,909 @@
 
 </html>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>INCOEX Logistics - Splash</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050d2d;
+        }
+
+        /* =====================================================
+           CONTENEDOR PRINCIPAL
+        ===================================================== */
+
+        .app {
+            width: 100%;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #050d2d;
+        }
+
+        /* Tamaño tipo teléfono */
+
+        .phone {
+            position: relative;
+            width: min(100vw, 390px);
+            height: min(100dvh, 844px);
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    180deg,
+                    #0739b8 0%,
+                    #0639b8 38%,
+                    #082d8f 63%,
+                    #090e32 100%
+                );
+        }
+
+        /* En pantallas grandes simulamos el teléfono */
+
+        @media (min-width: 500px) {
+
+            .phone {
+                height: min(100dvh, 844px);
+                border-radius: 0;
+                box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        /* =====================================================
+           SPLASH
+        ===================================================== */
+
+        .splash {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            padding:
+                20px
+                18px
+                17px;
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(30px);
+
+            transition:
+                opacity .35s ease,
+                transform .35s ease,
+                visibility .35s;
+        }
+
+        .splash.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+            z-index: 5;
+        }
+
+        /* =====================================================
+           INDICADORES SUPERIORES
+        ===================================================== */
+
+        .progress {
+            width: 100%;
+            height: 4px;
+
+            display: flex;
+            gap: 5px;
+
+            margin-bottom: 17px;
+        }
+
+        .progress span {
+            height: 4px;
+            flex: 1;
+
+            background: rgba(255,255,255,.28);
+
+            border-radius: 10px;
+
+            transition: .3s ease;
+        }
+
+        .progress span.active {
+            background: white;
+        }
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .brand {
+            height: 58px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin-bottom: 5px;
+        }
+
+        .brand-content {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Logo X */
+
+        .logo-x {
+            position: relative;
+
+            width: 28px;
+            height: 25px;
+        }
+
+        .logo-x::before,
+        .logo-x::after {
+            content: "";
+
+            position: absolute;
+
+            width: 29px;
+            height: 8px;
+
+            background: #24a9ed;
+
+            transform: skew(-35deg);
+
+            border-radius: 2px;
+        }
+
+        .logo-x::before {
+            top: 3px;
+            left: 0;
+        }
+
+        .logo-x::after {
+            bottom: 3px;
+            right: 0;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .brand-name {
+            color: white;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .brand-subtitle {
+            color: white;
+            font-size: 8px;
+            text-align: right;
+            margin-top: 2px;
+        }
+
+        /* =====================================================
+           ZONA DE IMAGEN
+        ===================================================== */
+
+        .visual {
+            position: relative;
+
+            width: 100%;
+            flex: 1;
+
+            min-height: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        /*
+            PLACEHOLDER DE IMAGEN
+
+            Aquí puedes colocar posteriormente:
+
+            <img src="img/personaje.png">
+
+            El espacio ya está reservado para mantener
+            exactamente la composición de la pantalla.
+        */
+
+        .image-placeholder {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            max-height: 430px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*
+            OPCIONAL:
+            El texto "IMAGEN" puedes eliminarlo cuando
+            pongas tus imágenes.
+        */
+
+        .placeholder-label {
+            position: absolute;
+
+            color: rgba(255,255,255,.0);
+
+            font-size: 12px;
+            font-weight: bold;
+
+            border: 2px dashed rgba(255,255,255,.0);
+
+            padding: 15px 25px;
+            border-radius: 12px;
+        }
+
+        /*
+            Ejemplo para colocar la imagen:
+
+            .image-placeholder img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        */
+
+        /* =====================================================
+           TEXTO
+        ===================================================== */
+
+        .description {
+            width: 100%;
+
+            text-align: center;
+
+            color: white;
+
+            min-height: 83px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 5px 10px 0;
+        }
+
+        .description p {
+            max-width: 330px;
+
+            font-size: 14px;
+            line-height: 1.3;
+
+            font-weight: 600;
+
+            text-shadow:
+                0 1px 2px rgba(0,0,0,.2);
+        }
+
+        /* =====================================================
+           BOTONES
+        ===================================================== */
+
+        .buttons {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 8px;
+
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            height: 41px;
+
+            border: none;
+            outline: none;
+
+            border-radius: 25px;
+
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform .15s ease,
+                opacity .15s ease;
+        }
+
+        button:active {
+            transform: scale(.97);
+        }
+
+        .continue {
+            background: #0b1038;
+
+            color: white;
+
+            box-shadow:
+                inset 0 1px 1px rgba(255,255,255,.03);
+        }
+
+        .skip {
+            background: white;
+
+            color: #0645cf;
+        }
+
+        /* =====================================================
+           CONTROLES LATERALES OPCIONALES
+        ===================================================== */
+
+        .touch-left,
+        .touch-right {
+            position: absolute;
+
+            top: 45%;
+            width: 30%;
+            height: 35%;
+
+            z-index: 10;
+        }
+
+        .touch-left {
+            left: 0;
+        }
+
+        .touch-right {
+            right: 0;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-height: 700px) {
+
+            .splash {
+                padding-top: 15px;
+                padding-bottom: 12px;
+            }
+
+            .brand {
+                height: 48px;
+            }
+
+            .description {
+                min-height: 70px;
+            }
+
+            .description p {
+                font-size: 13px;
+            }
+
+            button {
+                height: 38px;
+            }
+
+            .image-placeholder {
+                max-height: 360px;
+            }
+        }
+
+        @media (max-width: 330px) {
+
+            .splash {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .brand-name {
+                font-size: 18px;
+            }
+
+            .description p {
+                font-size: 12px;
+            }
+
+            button {
+                height: 39px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <main class="phone">
+
+        <!-- ==================================================
+             PANTALLA 1
+        ================================================== -->
+
+        <section class="splash active" data-screen="0">
+
+            <!-- Indicadores -->
+
+            <div class="progress">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+            </div>
+
+
+            <!-- Logo -->
+
+            <div class="brand">
+
+                <div class="brand-content">
+
+                    <div class="logo-x"></div>
+
+                    <div class="brand-text">
+                        <div class="brand-name">
+                            INCOEX
+                        </div>
+
+                        <div class="brand-subtitle">
+                            Logistics
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMAGEN -->
+
+            <div class="visual">
+
+                <div class="image-placeholder">
+
+                    <!--
+                        COLOCA AQUÍ TU IMAGEN:
+
+                        <img src="img/splash-1.png" alt="Personaje">
+
+                    -->
+
+                    <span class="placeholder-label">
+                        IMAGEN 1
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Texto -->
+
+            <div class="description">
+
+                <p>
+                    Gestiona la recolección,<br>
+                    entrega de tus paquetes de forma rápida<br>
+                    y segura desde un solo lugar.
+                </p>
+
+            </div>
+
+
+            <!-- Botones -->
+
+            <div class="buttons">
+
+                <button
+                    class="continue"
+                    onclick="nextScreen()">
+                    Continuar
+                </button>
+
+                <button
+                    class="skip"
+                    onclick="skipSplash()">
+                    Omitir
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             PANTALLA 2
+        ================================================== -->
+
+        <section class="splash" data-screen="1">
+
+            <div class="progress">
+                <span></span>
+                <span class="active"></span>
+                <span></span>
+            </div>
+
+
+            <div class="brand">
+
+                <div class="brand-content">
+
+                    <div class="logo-x"></div>
+
+                    <div class="brand-text">
+
+                        <div class="brand-name">
+                            INCOEX
+                        </div>
+
+                        <div class="brand-subtitle">
+                            Logistics
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLACEHOLDER IMAGEN 2 -->
+
+            <div class="visual">
+
+                <div class="image-placeholder">
+
+                    <!--
+                        <img src="img/splash-2.png" alt="Personaje">
+                    -->
+
+                    <span class="placeholder-label">
+                        IMAGEN 2
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="description">
+
+                <p>
+                    Encuentra soluciones logísticas<br>
+                    diseñadas para hacer tus entregas<br>
+                    más simples y eficientes.
+                </p>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    class="continue"
+                    onclick="nextScreen()">
+                    Continuar
+                </button>
+
+                <button
+                    class="skip"
+                    onclick="skipSplash()">
+                    Omitir
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             PANTALLA 3
+        ================================================== -->
+
+        <section class="splash" data-screen="2">
+
+            <div class="progress">
+                <span></span>
+                <span></span>
+                <span class="active"></span>
+            </div>
+
+
+            <div class="brand">
+
+                <div class="brand-content">
+
+                    <div class="logo-x"></div>
+
+                    <div class="brand-text">
+
+                        <div class="brand-name">
+                            INCOEX
+                        </div>
+
+                        <div class="brand-subtitle">
+                            Logistics
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLACEHOLDER IMAGEN 3 -->
+
+            <div class="visual">
+
+                <div class="image-placeholder">
+
+                    <!--
+                        <img src="img/splash-3.png" alt="Personaje">
+                    -->
+
+                    <span class="placeholder-label">
+                        IMAGEN 3
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="description">
+
+                <p>
+                    Todo lo que necesitas para gestionar<br>
+                    tus envíos en un solo lugar.<br>
+                    ¡Comienza ahora!
+                </p>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    class="continue"
+                    onclick="finishSplash()">
+                    Comenzar
+                </button>
+
+                <button
+                    class="skip"
+                    onclick="skipSplash()">
+                    Omitir
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             ZONAS PARA DESLIZAR
+        ================================================== -->
+
+        <div
+            class="touch-left"
+            onclick="previousScreen()">
+        </div>
+
+        <div
+            class="touch-right"
+            onclick="nextScreen()">
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    /* =====================================================
+       CONFIGURACIÓN
+    ===================================================== */
+
+    let currentScreen = 0;
+
+    const screens =
+        document.querySelectorAll(".splash");
+
+
+    /* =====================================================
+       MOSTRAR PANTALLA
+    ===================================================== */
+
+    function showScreen(index) {
+
+        if (index < 0) {
+            index = 0;
+        }
+
+        if (index >= screens.length) {
+            index = screens.length - 1;
+        }
+
+        currentScreen = index;
+
+        screens.forEach((screen, i) => {
+
+            screen.classList.toggle(
+                "active",
+                i === currentScreen
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       SIGUIENTE
+    ===================================================== */
+
+    function nextScreen() {
+
+        if (currentScreen < screens.length - 1) {
+
+            showScreen(currentScreen + 1);
+
+        } else {
+
+            finishSplash();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       ANTERIOR
+    ===================================================== */
+
+    function previousScreen() {
+
+        if (currentScreen > 0) {
+
+            showScreen(currentScreen - 1);
+
+        }
+
+    }
+
+
+    /* =====================================================
+       OMITIR
+    ===================================================== */
+
+    function skipSplash() {
+
+        /*
+            Aquí puedes mandar al usuario
+            a tu página principal.
+
+            Ejemplo:
+
+            window.location.href = "home.html";
+        */
+
+        alert("Aquí comenzaría la aplicación");
+
+    }
+
+
+    /* =====================================================
+       FINALIZAR SPLASH
+    ===================================================== */
+
+    function finishSplash() {
+
+        /*
+            Cambia esto por la página
+            principal de tu aplicación.
+
+            Ejemplo:
+
+            window.location.href = "home.html";
+        */
+
+        alert("¡Bienvenido a INCOEX Logistics!");
+
+    }
+
+
+    /* =====================================================
+       SWIPE PARA MÓVIL
+    ===================================================== */
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+
+    document
+        .querySelector(".phone")
+        .addEventListener(
+            "touchstart",
+            function(event) {
+
+                touchStartX =
+                    event.changedTouches[0].screenX;
+
+            },
+            { passive: true }
+        );
+
+
+    document
+        .querySelector(".phone")
+        .addEventListener(
+            "touchend",
+            function(event) {
+
+                touchEndX =
+                    event.changedTouches[0].screenX;
+
+                handleSwipe();
+
+            },
+            { passive: true }
+        );
+
+
+    function handleSwipe() {
+
+        const distance =
+            touchEndX - touchStartX;
+
+        if (Math.abs(distance) < 50) {
+            return;
+        }
+
+        if (distance < 0) {
+
+            nextScreen();
+
+        } else {
+
+            previousScreen();
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
