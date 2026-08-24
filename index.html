@@ -1,132 +1,838 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INCOEX Logistics - Splash</title>
+    <title>INCOEX — Splash Screens</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #202020;
+            --blue: #0647c5;
+            --blue-dark: #063da9;
+            --white: #ffffff;
+            --dark-button: #0b0b2d;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--background);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 35px;
+        }
+
+
+        /* =========================================
+           CONTENEDOR DE LAS 3 SPLASH
+        ========================================= */
+
+        .splash-container {
+            width: 100%;
+            max-width: 1000px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 8px;
+        }
+
+
+        /* =========================================
+           CADA SPLASH
+        ========================================= */
+
+        .splash-card {
+            width: 100%;
+        }
+
+        .splash-title {
+            color: #858585;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* =========================================
+           PANTALLA AZUL
+        ========================================= */
+
+        .splash-screen {
+            position: relative;
+
+            width: 100%;
+            height: 620px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #0749c5 0%,
+                    #063ca5 100%
+                );
+
+            padding:
+                12px
+                10px
+                16px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        /* =========================================
+           LÍNEA SUPERIOR
+        ========================================= */
+
+        .top-line {
+            width: 88%;
+            height: 2px;
+
+            background: rgba(255,255,255,0.95);
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================================
+           LOGO
+        ========================================= */
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 5px;
+
+            color: white;
+
+            margin-bottom: 4px;
+        }
+
+        .logo-symbol {
+            font-size: 22px;
+            font-weight: 900;
+
+            line-height: 1;
+
+            transform: skew(-15deg);
+
+            color: #35a8ff;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+
+            line-height: 1;
+        }
+
+        .logo-text strong {
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: -0.3px;
+        }
+
+        .logo-text span {
+            font-size: 5px;
+
+            margin-top: 2px;
+
+            opacity: 0.9;
+        }
+
+
+        /* =========================================
+           PLACEHOLDER DE PERSONAJE
+        ========================================= */
+
+        .character-area {
+            width: 100%;
+
+            height: 365px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            margin-top: 2px;
+        }
+
+        .character-placeholder {
+            width: 90%;
+            height: 95%;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            flex-direction: column;
+
+            border-radius: 10px;
+
+            border:
+                1px dashed
+                rgba(255,255,255,0.22);
+
+            background:
+                rgba(0,0,0,0.04);
+
+            color:
+                rgba(255,255,255,0.55);
+
+            text-align: center;
+        }
+
+        .character-placeholder .icon {
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+            opacity: 0.7;
+        }
+
+        .character-placeholder strong {
+            font-size: 12px;
+
+            letter-spacing: 1px;
+        }
+
+        .character-placeholder span {
+            font-size: 8px;
+
+            margin-top: 5px;
+
+            opacity: 0.7;
+        }
+
+
+        /* =========================================
+           PARA USAR IMAGEN REAL
+        ========================================= */
+
+        .character-image {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            display: block;
+        }
+
+
+        /* =========================================
+           DESCRIPCIÓN
+        ========================================= */
+
+        .description {
+            width: 96%;
+
+            color: white;
+
+            text-align: center;
+
+            font-size: 8.5px;
+
+            line-height: 1.45;
+
+            min-height: 48px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            margin-top: 3px;
+        }
+
+
+        /* =========================================
+           BOTONES
+        ========================================= */
+
+        .buttons {
+            width: 95%;
+
+            margin-top: auto;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+        .btn {
+            width: 100%;
+
+            height: 24px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            font-size: 9px;
+
+            font-weight: 600;
+
+            font-family: inherit;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+
+        /* CONTINUAR */
+
+        .btn-primary {
+            background: var(--dark-button);
+
+            color: white;
+        }
+
+
+        /* OMITIR */
+
+        .btn-secondary {
+            background: white;
+
+            color: #0745b8;
+        }
+
+
+        /* =========================================
+           TABLET
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            body {
+                padding: 25px 15px;
+            }
+
+            .splash-container {
+                max-width: 650px;
+
+                grid-template-columns:
+                    repeat(3, minmax(180px, 1fr));
+            }
+
+            .splash-screen {
+                height: 570px;
+            }
+
+            .character-area {
+                height: 320px;
+            }
+
+            .description {
+                font-size: 8px;
+            }
+        }
+
+
+        /* =========================================
+           MÓVIL
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 18px 12px;
+
+                display: block;
+            }
+
+            .splash-container {
+
+                display: flex;
+
+                width: 100%;
+
+                overflow-x: auto;
+
+                gap: 14px;
+
+                scroll-snap-type: x mandatory;
+
+                scrollbar-width: none;
+
+                padding-bottom: 10px;
+            }
+
+            .splash-container::-webkit-scrollbar {
+                display: none;
+            }
+
+            .splash-card {
+
+                flex:
+                    0 0 100%;
+
+                scroll-snap-align: center;
+            }
+
+            .splash-title {
+                font-size: 13px;
+            }
+
+            .splash-screen {
+
+                width: 100%;
+
+                height:
+                    calc(100vh - 70px);
+
+                min-height: 580px;
+
+                max-height: 760px;
+
+                padding:
+                    18px
+                    16px
+                    20px;
+            }
+
+            .top-line {
+                width: 90%;
+            }
+
+            .logo {
+                margin-bottom: 4px;
+            }
+
+            .logo-text strong {
+                font-size: 13px;
+            }
+
+            .logo-text span {
+                font-size: 6px;
+            }
+
+            .logo-symbol {
+                font-size: 26px;
+            }
+
+            .character-area {
+
+                height:
+                    55vh;
+
+                max-height:
+                    430px;
+
+                min-height:
+                    300px;
+            }
+
+            .character-placeholder {
+                width: 95%;
+                height: 100%;
+            }
+
+            .description {
+
+                width: 94%;
+
+                font-size: 11px;
+
+                line-height: 1.5;
+
+                min-height: auto;
+
+                margin:
+                    10px 0 15px;
+            }
+
+            .buttons {
+                width: 100%;
+
+                gap: 9px;
+            }
+
+            .btn {
+
+                height: 42px;
+
+                font-size: 12px;
+            }
+        }
+
+
+        /* =========================================
+           MÓVILES PEQUEÑOS
+        ========================================= */
+
+        @media (max-width: 380px) {
+
+            .splash-screen {
+                min-height: 550px;
+            }
+
+            .character-area {
+                height: 300px;
+            }
+
+            .description {
+                font-size: 10px;
+            }
+
+            .btn {
+                height: 38px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
     <main class="splash-container">
 
-        <!-- SPLASH 1 -->
+
+        <!-- =====================================
+             SPLASH 1
+        ====================================== -->
+
         <section class="splash-card">
 
-            <div class="splash-label">Splash 1</div>
+            <h2 class="splash-title">
+                Splash 1
+            </h2>
 
             <div class="splash-screen">
 
                 <div class="top-line"></div>
 
+
+                <!-- LOGO -->
+
                 <div class="logo">
-                    <span class="logo-icon">X</span>
-                    <div>
-                        <strong>INCOEX</strong>
-                        <small>Logística</small>
+
+                    <div class="logo-symbol">
+                        X
                     </div>
+
+                    <div class="logo-text">
+
+                        <strong>
+                            INCOEX
+                        </strong>
+
+                        <span>
+                            Logística
+                        </span>
+
+                    </div>
+
                 </div>
 
-                <!-- PLACEHOLDER IMAGEN -->
-                <div class="image-placeholder">
-                    <span>IMAGEN</span>
-                    <small>personaje-splash-1.png</small>
+
+                <!-- PERSONAJE -->
+
+                <div class="character-area">
+
+                    <div class="character-placeholder">
+
+                        <div class="icon">
+                            🖼
+                        </div>
+
+                        <strong>
+                            PERSONAJE
+                        </strong>
+
+                        <span>
+                            splash-1.png
+                        </span>
+
+                    </div>
+
+                    <!--
+                    PARA USAR LA IMAGEN:
+
+                    <img
+                        class="character-image"
+                        src="assets/splash-1.png"
+                        alt="Personaje"
+                    >
+                    -->
+
                 </div>
+
+
+                <!-- TEXTO -->
 
                 <p class="description">
+
                     Gestiona la recolección,<br>
                     entrega de tus paquetes de forma rápida<br>
-                    y segura desde su solo lugar.
+                    y segura desde un solo lugar.
+
                 </p>
 
+
+                <!-- BOTONES -->
+
                 <div class="buttons">
-                    <button class="btn-primary">Continuar</button>
-                    <button class="btn-secondary">Omitir</button>
+
+                    <button class="btn btn-primary">
+                        Continuar
+                    </button>
+
+                    <button class="btn btn-secondary">
+                        Omitir
+                    </button>
+
                 </div>
 
             </div>
+
         </section>
 
 
-        <!-- SPLASH 2 -->
+
+        <!-- =====================================
+             SPLASH 2
+        ====================================== -->
+
         <section class="splash-card">
 
-            <div class="splash-label">Splash 2</div>
+            <h2 class="splash-title">
+                Splash 2
+            </h2>
 
             <div class="splash-screen">
 
                 <div class="top-line"></div>
 
+
+                <!-- LOGO -->
+
                 <div class="logo">
-                    <span class="logo-icon">X</span>
-                    <div>
-                        <strong>INCOEX</strong>
-                        <small>Logística</small>
+
+                    <div class="logo-symbol">
+                        X
                     </div>
+
+                    <div class="logo-text">
+
+                        <strong>
+                            INCOEX
+                        </strong>
+
+                        <span>
+                            Logística
+                        </span>
+
+                    </div>
+
                 </div>
 
-                <!-- PLACEHOLDER IMAGEN -->
-                <div class="image-placeholder">
-                    <span>IMAGEN</span>
-                    <small>personaje-splash-2.png</small>
+
+                <!-- PERSONAJE -->
+
+                <div class="character-area">
+
+                    <div class="character-placeholder">
+
+                        <div class="icon">
+                            🖼
+                        </div>
+
+                        <strong>
+                            PERSONAJE
+                        </strong>
+
+                        <span>
+                            splash-2.png
+                        </span>
+
+                    </div>
+
+                    <!--
+                    <img
+                        class="character-image"
+                        src="assets/splash-2.png"
+                        alt="Personaje"
+                    >
+                    -->
+
                 </div>
+
+
+                <!-- TEXTO -->
 
                 <p class="description">
+
                     Monitorea cada pedido en tiempo real y<br>
                     recibe asistencia profesional cuando<br>
                     lo necesites.
+
                 </p>
 
+
+                <!-- BOTONES -->
+
                 <div class="buttons">
-                    <button class="btn-primary">Continuar</button>
-                    <button class="btn-secondary">Omitir</button>
+
+                    <button class="btn btn-primary">
+                        Continuar
+                    </button>
+
+                    <button class="btn btn-secondary">
+                        Omitir
+                    </button>
+
                 </div>
 
             </div>
+
         </section>
 
 
-        <!-- SPLASH 3 -->
+
+        <!-- =====================================
+             SPLASH 3
+        ====================================== -->
+
         <section class="splash-card">
 
-            <div class="splash-label">Splash 3</div>
+            <h2 class="splash-title">
+                Splash 3
+            </h2>
 
             <div class="splash-screen">
 
                 <div class="top-line"></div>
 
+
+                <!-- LOGO -->
+
                 <div class="logo">
-                    <span class="logo-icon">X</span>
-                    <div>
-                        <strong>INCOEX</strong>
-                        <small>Logística</small>
+
+                    <div class="logo-symbol">
+                        X
                     </div>
+
+                    <div class="logo-text">
+
+                        <strong>
+                            INCOEX
+                        </strong>
+
+                        <span>
+                            Logística
+                        </span>
+
+                    </div>
+
                 </div>
 
-                <!-- PLACEHOLDER IMAGEN -->
-                <div class="image-placeholder">
-                    <span>IMAGEN</span>
-                    <small>personaje-splash-3.png</small>
+
+                <!-- PERSONAJE -->
+
+                <div class="character-area">
+
+                    <div class="character-placeholder">
+
+                        <div class="icon">
+                            🖼
+                        </div>
+
+                        <strong>
+                            PERSONAJE
+                        </strong>
+
+                        <span>
+                            splash-3.png
+                        </span>
+
+                    </div>
+
+                    <!--
+                    <img
+                        class="character-image"
+                        src="assets/splash-3.png"
+                        alt="Personaje"
+                    >
+                    -->
+
                 </div>
+
+
+                <!-- TEXTO -->
 
                 <p class="description">
+
                     Disfruta de entregas express sin<br>
                     complicaciones y llega a cualquier lugar<br>
                     con la máxima eficiencia.
+
                 </p>
 
+
+                <!-- BOTONES -->
+
                 <div class="buttons">
-                    <button class="btn-primary">Continuar</button>
-                    <button class="btn-secondary">Omitir</button>
+
+                    <button class="btn btn-primary">
+                        Continuar
+                    </button>
+
+                    <button class="btn btn-secondary">
+                        Omitir
+                    </button>
+
                 </div>
 
             </div>
+
         </section>
+
 
     </main>
 
 </body>
 </html>
+```
