@@ -220,17 +220,9 @@
 
             overflow: hidden;
         }
-
-        /*
-            PLACEHOLDER DE IMAGEN
-
-            Aquí puedes colocar posteriormente:
-
-            <img src="img/personaje.png">
-
-            El espacio ya está reservado para mantener
-            exactamente la composición de la pantalla.
-        */
+<img src="img/splash-1.png" alt="Personaje">
+        <img src="img/splash-2.png" alt="Personaje">
+        <img src="img/splash-3.png" alt="Personaje">
 
         .image-placeholder {
             position: relative;
@@ -244,12 +236,12 @@
             justify-content: center;
             align-items: center;
         }
-
-        /*
-            OPCIONAL:
-            El texto "IMAGEN" puedes eliminarlo cuando
-            pongas tus imágenes.
-        */
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
 
         .placeholder-label {
             position: absolute;
