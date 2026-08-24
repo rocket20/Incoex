@@ -415,6 +415,152 @@
                 height: 39px;
             }
         }
+
+        /* =====================================================
+           NUEVA PANTALLA DE LOGIN
+        ===================================================== */
+        
+        .login-screen {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(30px);
+            transition: opacity .4s ease, transform .4s ease, visibility .4s;
+            z-index: 20;
+            /* Se recomienda colocar aquí tu imagen de fondo para la parte superior (ciudad/volcán) */
+            background: url('img/login-bg.jpg') center top / cover no-repeat, #050d2d; 
+        }
+
+        .login-screen.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .login-top {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Reutilizamos los estilos del logo, pero lo fijamos arriba a la izquierda */
+        .login-screen .brand {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            height: auto;
+            margin: 0;
+            z-index: 23;
+        }
+
+        /* Mascota superpuesta (garras por encima de la tarjeta) */
+        .login-mascot {
+            position: absolute;
+            bottom: -35px; /* Ajusta este valor para que las garras bajen sobre la tarjeta azul */
+            width: 90%;
+            max-width: 350px;
+            z-index: 22;
+        }
+
+        .login-card {
+            position: relative;
+            background: linear-gradient(180deg, #0937a5 0%, #101c45 100%);
+            width: 100%;
+            border-radius: 25px 25px 0 0;
+            padding: 55px 25px 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 21;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+        }
+
+        .login-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .login-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-group {
+            width: 100%;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-group label {
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
+            width: 100%;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 0 20px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+            transition: border .3s;
+        }
+        
+        .input-group input:focus {
+            border: 1px solid #24a9ed;
+        }
+
+        .register-text {
+            color: #d1d5e5;
+            font-size: 13px;
+            margin: 5px 0 30px;
+        }
+
+        .register-text b {
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            background: #0d163d;
+            color: white;
+            width: 100%;
+            height: 48px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: inset 0 1px 1px rgba(255,255,255,.05), 0 4px 10px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .btn-login:active {
+            transform: scale(.97);
+        }
+
+        .terms-text {
+            color: #d1d5e5;
+            font-size: 10px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -471,7 +617,7 @@
                  <img src="img/splash-1.png" alt="Personaje">
                     
                     <span class="placeholder-label">
-                       
+                        
                     </span>
 
                 </div>
@@ -677,6 +823,57 @@
 
         </section>
 
+        <!-- ==================================================
+             NUEVA PANTALLA: LOGIN (AGREGADA)
+        ================================================== -->
+
+        <section class="login-screen" id="loginScreen">
+            
+            <div class="login-top">
+                <!-- Logo superior -->
+                <div class="brand">
+                    <div class="brand-content">
+                        <div class="logo-x"></div>
+                        <div class="brand-text">
+                            <div class="brand-name">INCOEX</div>
+                            <div class="brand-subtitle">Logistics</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagen del personaje superpuesta (colocar ruta de tu imagen real) -->
+                <img src="img/mascota-login.png" alt="Mascota INCOEX" class="login-mascot">
+            </div>
+
+            <!-- Tarjeta Inferior de Login -->
+            <div class="login-card">
+                <h2 class="login-title">Inicia Sesión</h2>
+
+                <div class="login-form">
+                    <div class="input-group">
+                        <label>Usuario/Correo electrónico</label>
+                        <input type="text" placeholder="">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Contraseña</label>
+                        <input type="password" placeholder="">
+                    </div>
+
+                    <div class="register-text">
+                        ¿No tienes cuenta? <b>Regístrate aquí</b>
+                    </div>
+
+                    <button class="btn-login">Acceder</button>
+                </div>
+
+                <div class="terms-text">
+                    Uso de Términos y Condiciónes
+                </div>
+            </div>
+
+        </section>
+
 
         <!-- ==================================================
              ZONAS PARA DESLIZAR
@@ -772,42 +969,26 @@
 
 
     /* =====================================================
-       OMITIR
+       OMITIR (MODIFICADO PARA MOSTRAR LOGIN)
     ===================================================== */
 
     function skipSplash() {
-
-        /*
-            Aquí puedes mandar al usuario
-            a tu página principal.
-
-            Ejemplo:
-
-            window.location.href = "home.html";
-        */
-
-        alert("Aquí comenzaría la aplicación");
-
+        // Oculta todos los splash
+        document.querySelectorAll(".splash").forEach(s => s.classList.remove("active"));
+        // Muestra la pantalla de login
+        document.getElementById("loginScreen").classList.add("active");
     }
 
 
     /* =====================================================
-       FINALIZAR SPLASH
+       FINALIZAR SPLASH (MODIFICADO PARA MOSTRAR LOGIN)
     ===================================================== */
 
     function finishSplash() {
-
-        /*
-            Cambia esto por la página
-            principal de tu aplicación.
-
-            Ejemplo:
-
-            window.location.href = "home.html";
-        */
-
-        alert("¡Bienvenido a INCOEX Logistics!");
-
+        // Oculta todos los splash
+        document.querySelectorAll(".splash").forEach(s => s.classList.remove("active"));
+        // Muestra la pantalla de login
+        document.getElementById("loginScreen").classList.add("active");
     }
 
 
@@ -850,6 +1031,11 @@
 
 
     function handleSwipe() {
+
+        // Si ya estamos en la pantalla de login, no procesar el swipe
+        if (document.getElementById("loginScreen").classList.contains("active")) {
+            return;
+        }
 
         const distance =
             touchEndX - touchStartX;
